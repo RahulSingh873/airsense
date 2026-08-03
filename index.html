@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AirSense — Live Air Quality & Health Advisory</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <h1 class="logo">AirSense</h1>
+    <p class="tagline">Is it safe to go outside today?</p>
+  </header>
+
+  <main class="container">
+
+    <section class="search-section">
+      <div class="search-bar">
+        <input type="text" id="city-input" placeholder="Search any city..." autocomplete="off">
+        <button id="search-btn">Search</button>
+      </div>
+      <div class="quick-select">
+        <button class="quick-btn" data-city="Delhi">Delhi</button>
+        <button class="quick-btn" data-city="Mumbai">Mumbai</button>
+        <button class="quick-btn" data-city="Bengaluru">Bengaluru</button>
+        <button class="quick-btn" data-city="Ghaziabad">Ghaziabad</button>
+      </div>
+    </section>
+
+    <section id="status-message" class="status-message"></section>
+
+    <section id="empty-state" class="empty-state">
+      <p>Search a city to get started</p>
+    </section>
+
+    <section id="snapshot-card" class="snapshot-card hidden"></section>
+
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/score.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
