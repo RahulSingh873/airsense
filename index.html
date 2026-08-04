@@ -35,12 +35,33 @@
     </section>
 
     <section id="snapshot-card" class="snapshot-card hidden"></section>
+    <section id="personalization-section" class="personalization-section hidden">
+      <h3>A little about you</h3>
+      <div class="question-group">
+        <p>Do you belong to a sensitive group? (asthma, elderly, child, respiratory condition)</p>
+        <div class="toggle-options">
+          <button class="toggle-btn" data-question="sensitive" data-value="true">Yes</button>
+          <button class="toggle-btn" data-question="sensitive" data-value="false">No</button>
+        </div>
+      </div>
+      <div class="question-group">
+        <p>Are you planning outdoor activity today? (exercise, commute, errands)</p>
+        <div class="toggle-options">
+          <button class="toggle-btn" data-question="outdoor" data-value="true">Yes</button>
+          <button class="toggle-btn" data-question="outdoor" data-value="false">No</button>
+        </div>
+      </div>
+      <button id="get-recommendation-btn" disabled>Get My Recommendation</button>
+    </section>
+
+    <section id="ai-card" class="ai-card hidden"></section>
 
   </main>
 
   <script src="js/api.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/score.js"></script>
+  <script src="js/claude.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

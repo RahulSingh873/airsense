@@ -29,6 +29,7 @@ function renderSnapshot(data, containerId) {
   const score = calculateSafetyScore(data.aqi);
   const weatherLabel = getWeatherLabel(data.weatherCode);
 
+
   container.innerHTML = `
     <div class="snapshot-header">
       <h2>${data.cityName}, ${data.country}</h2>
@@ -62,3 +63,18 @@ function renderSnapshot(data, containerId) {
 
   container.classList.remove("hidden");
 }
+
+function renderRecommendation(text) {
+     const container = document.getElementById("ai-card");
+     container.innerHTML = `
+       <h3>Your Recommendation</h3>
+       <p>${text}</p>
+     `;
+     container.classList.remove("hidden");
+   }
+
+   function showRecommendationError(message) {
+     const container = document.getElementById("ai-card");
+     container.innerHTML = `<p class="rec-error">${message}</p>`;
+     container.classList.remove("hidden");
+   }
