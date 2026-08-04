@@ -10,6 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentCityData = null;
   let answers = { sensitive: null, outdoor: null };
 
+  const compareToggleBtn = document.getElementById("compare-toggle-btn");
+  const compareSection = document.getElementById("compare-section");
+  const cityInput2 = document.getElementById("city-input-2");
+  const searchBtn2 = document.getElementById("search-btn-2");
+
   async function handleSearch(cityName) {
     const trimmedCity = cityName.trim();
 
@@ -93,6 +98,42 @@ document.addEventListener("DOMContentLoaded", () => {
     } finally {
       getRecommendationBtn.disabled = false;
       getRecommendationBtn.textContent = "Get My Recommendation";
+    }
+  });
+
+  compareToggleBtn.addEventListener("click", () => {
+    compareSection.classList.toggle("hidden");
+    if (!compareSection.classList.contains("hidden")) {
+      compareToggleBtn.textContent = "− Hide comparison";
+    } else {
+      compareToggleBtn.textContent = "+ Compare with another city";
+    }
+  });
+
+  async function handleSecondSearch(cityName) {
+    const trimmedCity = cityName.trim();
+    if (!trimmedCity) return;
+
+    searchBtn2.disabled = true;
+    try {
+      const data = await fetchCityData(trimmedCity);
+      renderSnapshot(data, "snapshot-card-2");
+    } catch (error) {
+      const container = document.getElementById("snapshot-card-2");
+      container.innerHTML = `<p class="rec-error">City not found — try another name.</p>`;
+      container.classList.remove("hidden");
+    } finally {
+      searchBtn2.disabled = false;
+    }
+  }
+
+  searchBtn2.addEventListener("click", () => {
+    handleSecondSearch(cityInput2.value);
+  });
+
+  cityInput2.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      handleSecondSearch(cityInput2.value);
     }
   });
 });
