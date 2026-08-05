@@ -1,12 +1,5 @@
-<p align="center">
-  <img src="./assets/airsense-banner.png" alt="AirSense - Is it safe to go outside today?" width="100%">
-</p>
+<img width="1142" height="217" alt="Screenshot 2026-08-05 213641" src="https://github.com/user-attachments/assets/60f9c359-6237-4c6f-987e-f6b19ed3f038" />
 
-<h1 align="center">AirSense</h1>
-
-<p align="center">
-  <strong>Is it safe to go outside today?</strong>
-</p>
 # AirSense
 
 Live AI-powered air quality & health advisory dashboard — built for the AB Talks 60-Day Claude AI Challenge.
