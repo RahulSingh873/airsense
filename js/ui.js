@@ -78,3 +78,35 @@ function renderRecommendation(text) {
      container.innerHTML = `<p class="rec-error">${message}</p>`;
      container.classList.remove("hidden");
    }
+
+   function renderSuggestions(suggestions, containerId, onSelect) {
+  const container = document.getElementById(containerId);
+
+  if (!suggestions.length) {
+    container.innerHTML = "";
+    container.classList.add("hidden");
+    return;
+  }
+
+  container.innerHTML = suggestions.map((s, i) => `
+    <div class="suggestion-item" data-index="${i}">
+      ${s.name}${s.admin1 ? ", " + s.admin1 : ""}, ${s.country}
+    </div>
+  `).join("");
+
+  container.classList.remove("hidden");
+
+  container.querySelectorAll(".suggestion-item").forEach((el) => {
+    el.addEventListener("click", () => {
+      const index = parseInt(el.getAttribute("data-index"));
+      onSelect(suggestions[index]);
+      hideSuggestions(containerId);
+    });
+  });
+}
+
+function hideSuggestions(containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+  container.classList.add("hidden");
+}

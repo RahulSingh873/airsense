@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const compareToggleBtn = document.getElementById("compare-toggle-btn");
   const compareSection = document.getElementById("compare-section");
   const cityInput2 = document.getElementById("city-input-2");
+
+  let debounceTimer1, debounceTimer2;
+
   const searchBtn2 = document.getElementById("search-btn-2");
 
   async function handleSearch(cityName) {
@@ -136,4 +139,40 @@ document.addEventListener("DOMContentLoaded", () => {
       handleSecondSearch(cityInput2.value);
     }
   });
+
+  function setupAutocomplete(inputEl, suggestionsId, onSelectCity, debounceTimerRef) {
+    inputEl.addEventListener("input", () => {
+      clearTimeout(debounceTimerRef.timer);
+      const query = inputEl.value;
+
+      debounceTimerRef.timer = setTimeout(async () => {
+        try {
+          const suggestions = await searchCitySuggestions(query);
+          renderSuggestions(suggestions, suggestionsId, (selected) => {
+            inputEl.value = selected.name;
+            onSelectCity(selected.name);
+          });
+        } catch (error) {
+          hideSuggestions(suggestionsId);
+        }
+      }, 300);
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!inputEl.contains(event.target) && !document.getElementById(suggestionsId).contains(event.target)) {
+        hideSuggestions(suggestionsId);
+      }
+    });
+  }
+
+  const timerRef1 = {};
+  const timerRef2 = {};
+
+  setupAutocomplete(cityInput, "suggestions-1", (cityName) => {
+    handleSearch(cityName);
+  }, timerRef1);
+
+  setupAutocomplete(cityInput2, "suggestions-2", (cityName) => {
+    handleSecondSearch(cityName);
+  }, timerRef2);
 });

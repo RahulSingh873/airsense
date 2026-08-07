@@ -19,10 +19,15 @@
   <main class="container">
 
     <section class="search-section">
-      <div class="search-bar">
-        <input type="text" id="city-input" placeholder="Search any city..." autocomplete="off">
-        <button id="search-btn">Search</button>
+      
+      <div class="search-bar-wrapper">
+        <div class="search-bar">
+          <input type="text" id="city-input" placeholder="Search any city..." autocomplete="off">
+          <button id="search-btn">Search</button>
+        </div>
+        <div id="suggestions-1" class="suggestions-dropdown hidden"></div>
       </div>
+
       <div class="quick-select">
         <button class="quick-btn" data-city="Delhi">Delhi</button>
         <button class="quick-btn" data-city="Mumbai">Mumbai</button>
@@ -63,10 +68,16 @@
     <button id="compare-toggle-btn" class="compare-toggle-btn">+ Compare with another city</button>
 
     <section id="compare-section" class="compare-section hidden">
-      <div class="search-bar">
-        <input type="text" id="city-input-2" placeholder="Search a second city..." autocomplete="off">
-        <button id="search-btn-2">Search</button>
+
+     <div class="search-bar-wrapper">
+        <div class="search-bar">
+          <input type="text" id="city-input-2" placeholder="Search a second city..." autocomplete="off">
+          <button id="search-btn-2">Search</button>
+        </div>
+        <div id="suggestions-2" class="suggestions-dropdown hidden"></div>
       </div>
+
+
       <div id="snapshot-card-2" class="snapshot-card hidden"></div>
     </section>
 
